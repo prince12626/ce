@@ -14,6 +14,7 @@ const PORT = ENV.PORT || 3000;
 /* ===============================
    ✅ INNGEST — NO MIDDLEWARE
 ================================ */
+app.use(express.json());
 app.use(
         "/api/inngest",
         serve({
@@ -25,7 +26,6 @@ app.use(
 /* ===============================
    NORMAL APP MIDDLEWARE
 ================================ */
-app.use(express.json());
 app.use(clerkMiddleware());
 
 app.get("/api/health", (req, res) => {
