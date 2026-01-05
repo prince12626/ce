@@ -14,4 +14,5 @@ export const ENV = {
         CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
         CLOUDINARY_URL: process.env.CLOUDINARY_URL,
         CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
+        WEBHOOK_SECRET: process.env.WEBHOOK_SECRET,
 };

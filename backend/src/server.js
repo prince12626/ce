@@ -11,22 +11,35 @@ const __dirname = path.resolve();
 const app = express();
 const PORT = ENV.PORT || 3000;
 
+/* ===============================
+   ✅ INNGEST — NO MIDDLEWARE
+================================ */
+app.use(
+        "/api/inngest",
+        serve({
+                client: inngest,
+                functions,
+        })
+);
+
+/* ===============================
+   NORMAL APP MIDDLEWARE
+================================ */
+app.use(express.json());
 app.use(clerkMiddleware());
 
-app.use("api/inngest", serve({ client: inngest, functions }));
 app.get("/api/health", (req, res) => {
         res.json({ health: "Health is Better than you." });
 });
 
-//. Make project ready for deployment.
-
+/* ===============================
+   PRODUCTION FRONTEND
+================================ */
 if (ENV.NODE_ENV === "production") {
         app.use(express.static(path.join(__dirname, "../admin/dist")));
 
-        app.get("/*any", (req, res) => {
-                res.sendFile(
-                        path.join(__dirname, "../admin", "dist", "index.html")
-                );
+        app.get("/*", (req, res) => {
+                res.sendFile(path.join(__dirname, "../admin/dist/index.html"));
         });
 }
 
@@ -34,10 +47,10 @@ const startServer = async () => {
         try {
                 await connectDB();
                 app.listen(PORT, () => {
-                        console.log(`Server is running ${PORT}`);
+                        console.log(`Server running on ${PORT}`);
                 });
         } catch (error) {
-                console.log(error);
+                console.error(error);
         }
 };
 
