@@ -6,14 +6,12 @@ import { connectDB } from "./config/db.js";
 import { clerkMiddleware } from "@clerk/express";
 import { serve } from "inngest/express";
 import { functions, inngest } from "./config/inngest.js";
+import adminRoutes from "./routes/admin.routes.js";
 
 const __dirname = path.resolve();
 const app = express();
 const PORT = ENV.PORT || 3000;
 
-/* ===============================
-   ✅ INNGEST — NO MIDDLEWARE
-================================ */
 app.use(express.json());
 app.use(
         "/api/inngest",
@@ -23,18 +21,13 @@ app.use(
         })
 );
 
-/* ===============================
-   NORMAL APP MIDDLEWARE
-================================ */
+app.use("/api/admin", adminRoutes);
 app.use(clerkMiddleware());
 
 app.get("/api/health", (req, res) => {
         res.json({ health: "Health is Better than you." });
 });
 
-/* ===============================
-   PRODUCTION FRONTEND
-================================ */
 if (ENV.NODE_ENV === "production") {
         app.use(express.static(path.join(__dirname, "../admin/dist")));
 
