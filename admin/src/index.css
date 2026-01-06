@@ -1,0 +1,8 @@
+@font-face {
+  font-family:MyFont;
+  src: url(https://raw.githubusercontent.com/prince12626/UniConnect/main/client/public/font.ttf) format(truetype);
+}
+
+body {
+  font-family: MyFont, sans-serif;
+}

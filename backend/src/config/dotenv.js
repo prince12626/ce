@@ -5,7 +5,6 @@ export const ENV = {
         NODE_ENV: process.env.NODE_ENV,
         PORT: process.env.PORT,
         DB_URL: process.env.DB_URL,
-        JWT_SECRET: process.env.JWT_SECRET,
         CLERK_PUBLISHABLE_KEY: process.env.CLERK_PUBLISHABLE_KEY,
         CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
         INNGEST_SIGNING_KEY: process.env.INNGEST_SIGNING_KEY,
@@ -14,5 +13,5 @@ export const ENV = {
         CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
         CLOUDINARY_URL: process.env.CLOUDINARY_URL,
         CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
-        WEBHOOK_SECRET: process.env.WEBHOOK_SECRET,
+        ADMIN_EMAIL: process.env.ADMIN_EMAIL,
 };
